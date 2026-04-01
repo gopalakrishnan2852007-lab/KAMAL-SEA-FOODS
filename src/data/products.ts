@@ -4,7 +4,7 @@ export const products = [
     name: "Crab",
     category: "Frozen",
     price: 500,
-    image: "/assets/crab.jpg",
+    image: "./assets/crab.jpg",
     type: "Frozen ❄️"
   },
   {
@@ -12,7 +12,7 @@ export const products = [
     name: "Squid",
     category: "Frozen",
     price: 400,
-    image: "/assets/squid.jpg",
+    image: "./assets/squid.jpg",
     type: "Frozen ❄️"
   },
   {
@@ -20,7 +20,7 @@ export const products = [
     name: "Medium Prawn",
     category: "Frozen",
     price: 500,
-    image: "/assets/medium-prawn.jpg",
+    image: "./assets/medium-prawn.jpg",
     type: "Frozen ❄️"
   },
   {
@@ -28,7 +28,7 @@ export const products = [
     name: "Boneless Fish",
     category: "Frozen",
     price: 330,
-    image: "/assets/boneless-fish.jpg",
+    image: "./assets/boneless-fish.jpg",
     type: "Frozen ❄️"
   },
   {
@@ -36,7 +36,7 @@ export const products = [
     name: "Nethili",
     category: "Frozen",
     price: 330,
-    image: "/assets/nethili.jpg",
+    image: "./assets/nethili.jpg",
     type: "Frozen ❄️"
   },
   {
@@ -44,7 +44,7 @@ export const products = [
     name: "Prawn",
     category: "Frozen",
     price: 500,
-    image: "/assets/prawn.jpg",
+    image: "./assets/prawn.jpg",
     type: "Frozen ❄️"
   },
   {
@@ -52,7 +52,7 @@ export const products = [
     name: "Vanjaram",
     category: "Frozen",
     price: 850,
-    image: "/assets/vanjaram.jpg",
+    image: "./assets/vanjaram.jpg",
     type: "Frozen ❄️"
   },
   {
@@ -60,7 +60,7 @@ export const products = [
     name: "Basha",
     category: "Frozen",
     price: 350,
-    image: "/assets/basha.jpg",
+    image: "./assets/basha.jpg",
     type: "Frozen ❄️"
   },
   {
@@ -68,7 +68,7 @@ export const products = [
     name: "Mathi",
     category: "Frozen",
     price: 300,
-    image: "/assets/mathi.jpg",
+    image: "./assets/mathi.jpg",
     type: "Frozen ❄️"
   },
   {
@@ -76,7 +76,7 @@ export const products = [
     name: "Small Prawn",
     category: "Frozen",
     price: 400,
-    image: "/assets/small-prawn.jpg",
+    image: "./assets/small-prawn.jpg",
     type: "Frozen ❄️"
   },
   {
