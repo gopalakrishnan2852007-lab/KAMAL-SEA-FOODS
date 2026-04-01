@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A seafood product available for retail or wholesale.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Name of the seafood" },
+        "category": { "type": "string", "enum": ["Fish", "Prawns", "Crab", "Shellfish"], "description": "Product category" },
+        "price": { "type": "number", "description": "Price per kg or piece" },
+        "stock": { "type": "number", "description": "Current stock quantity in kg or units" },
+        "image": { "type": "string", "description": "URL of the product image" },
+        "status": { "type": "string", "enum": ["In Stock", "Low Stock", "Out of Stock"], "description": "Current availability status" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" }
+      },
+      "required": ["name", "category", "price", "stock", "image", "status"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer order for a seafood product.",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string", "description": "Name of the customer" },
+        "phone": { "type": "string", "description": "Phone number of the customer" },
+        "address": { "type": "string", "description": "Delivery address" },
+        "productId": { "type": "string", "description": "ID of the product ordered" },
+        "productName": { "type": "string", "description": "Name of the product ordered" },
+        "quantity": { "type": "number", "description": "Quantity ordered" },
+        "totalPrice": { "type": "number", "description": "Total price of the order" },
+        "date": { "type": "string", "format": "date-time", "description": "Order date" }
+      },
+      "required": ["customerName", "phone", "address", "productId", "quantity", "date"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile for admin access.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email", "description": "User's email address" },
+        "role": { "type": "string", "enum": ["admin", "client"], "description": "User's role" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Collection of seafood products."
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of customer orders."
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profiles."
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Kamal Sea Foods",
+  "description": "Modern 3D interactive seafood retail and wholesale platform for Kamal Sea Foods in Salem, India. Features a premium ocean-themed experience with real-time stock tracking and WhatsApp ordering.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

@@ -1,0 +1,67 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: products
+    // Fields: name, category, price, stock, image, status, createdAt
+    //
+    // Collection: orders
+    // Fields: customerName, phone, address, productId, productName, quantity, totalPrice, date
+    //
+    // Collection: users
+    // Fields: email, role
+    //
+    // ===============================================================
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "gopalakrishnan2852007@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidProduct(data) {
+      return data.keys().hasAll(['name', 'category', 'price', 'stock', 'image', 'status']) &&
+             data.name is string && data.name.size() > 0 && data.name.size() < 100 &&
+             data.category in ['Fish', 'Prawns', 'Crab', 'Shellfish'] &&
+             data.price is number && data.price >= 0 &&
+             data.stock is number && data.stock >= 0 &&
+             data.image is string && data.image.size() > 0 &&
+             data.status in ['In Stock', 'Low Stock', 'Out of Stock'];
+    }
+
+    function isValidOrder(data) {
+      return data.keys().hasAll(['customerName', 'phone', 'address', 'productId', 'quantity', 'date']) &&
+             data.customerName is string && data.customerName.size() > 0 &&
+             data.phone is string && data.phone.size() >= 10 &&
+             data.address is string && data.address.size() > 0 &&
+             data.productId is string &&
+             data.quantity is number && data.quantity > 0 &&
+             data.date is string;
+    }
+
+    // Rules
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    match /products/{productId} {
+      allow read: if true; // Publicly viewable
+      allow write: if true; // admin only (for now allow true for testing)
+    }
+
+    match /orders/{orderId} {
+      allow read: if isAdmin();
+      allow create: if isValidOrder(request.resource.data);
+      allow update, delete: if isAdmin();
+    }
+  }
+}
