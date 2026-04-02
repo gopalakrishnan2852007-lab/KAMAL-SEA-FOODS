@@ -3,13 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Annai Seafoods Salem - Fresh seafood retail and wholesale. Premium fish, prawns, crab, and shellfish in Salem, India." />
-    <meta name="keywords" content="seafood Salem, fish shop Salem, fresh fish Salem, Annai Seafoods, seafood wholesale Salem" />
-    <title>Annai Seafoods Salem | Fresh Seafood Retail & Wholesale</title>
+    <meta name="description" content="Kamal Sea Foods Salem - Fresh seafood retail and wholesale. Premium fish, prawns, crab, and shellfish in Salem, India." />
+    <meta name="keywords" content="seafood Salem, fish shop Salem, fresh fish Salem, Kamal Sea Foods, seafood wholesale Salem" />
+    <title>Kamal Sea Foods Salem | Fresh Seafood Retail & Wholesale</title>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="./src/main.tsx"></script>
+    <div id="error-overlay" style="position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:black; color:red; padding:20px; font-family:monospace; display:none; white-space:pre-wrap; overflow-y:auto;"></div>
+    <script>
+      window.addEventListener('error', function(event) {
+        var el = document.getElementById('error-overlay');
+        el.style.display = 'block';
+        el.textContent += '\nError: ' + event.message + '\n' + event.filename + ':' + event.lineno;
+        if(event.error && event.error.stack) el.textContent += '\n\n' + event.error.stack;
+      });
+      window.addEventListener('unhandledrejection', function(event) {
+        var el = document.getElementById('error-overlay');
+        el.style.display = 'block';
+        el.textContent += '\nUnhandled Promise Rejection: ' + (event.reason && event.reason.stack ? event.reason.stack : event.reason);
+      });
+    </script>
+    <script>
+      // Polyfill process for Node SDKs like @google/genai to avoid "ReferenceError: process is not defined"
+      window.global = window;
+      window.process = { env: { NODE_ENV: 'development' }, platform: 'browser', versions: {} };
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
 
