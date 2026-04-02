@@ -46,7 +46,7 @@ export default function App() {
               <Route path="/admin-hidden-2026" element={<AdminDashboard user={user} />} />
             </Routes>
           </main>
-          
+
           <WhatsAppButton />
         </div>
       </Router>

@@ -43,8 +43,9 @@ export default function AdminDashboard({ user }: AdminDashboardProps) {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Login failed:', error);
+      alert(`Login Failed: ${error.message}\nMake sure Google Sign-In is enabled in your Firebase Console Authentication settings.`);
     }
   };
 
